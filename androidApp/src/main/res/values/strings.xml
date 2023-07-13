@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RSS reader</string>
+
+    <string name="scr_main_btn_start_game">Начать игру</string>
+    <string name="scr_main_btn_records">Рекорды</string>
+    <string name="scr_main_btn_info">Инфо</string>
+    <string name="scr_main_btn_other_games">Другие наши игры</string>
+    <string name="scr_main_txt_sounds_on">Звуки включены</string>
+    <string name="scr_main_txt_sounds_off">Звуки выключены</string>
+</resources>
