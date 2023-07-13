@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS questions (
+  _id INTEGER PRIMARY KEY NOT NULL,
+  level INTEGER NOT NULL,
+  questionText TEXT NOT NULL,
+  variant1 TEXT NOT NULL,
+  variant2 TEXT NOT NULL,
+  variant3 TEXT NOT NULL,
+  variant4 TEXT NOT NULL,
+  answer INTEGER NOT NULL,
+  bibleText TEXT
+);
+
+selectAll:
+SELECT * FROM questions;

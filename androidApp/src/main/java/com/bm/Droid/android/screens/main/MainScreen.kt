@@ -31,9 +31,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.adeo.kviewmodel.odyssey.StoredViewModel
 import com.bm.Droid.android.R
+import com.bm.Droid.android.screens.game.GAME_SCREEN_NAV_ID
+import com.bm.Droid.android.screens.main.models.MainScreenAction
 import com.bm.Droid.android.screens.main.models.MainScreenButtonType
 import com.bm.Droid.android.screens.main.models.MainScreenEvent
 import com.bm.Droid.android.screens.main.models.MainScreenViewState
+import ru.alexgladkov.odyssey.compose.extensions.push
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
 
 internal const val MAIN_SCREEN_NAV_ID = "main"
@@ -55,7 +58,7 @@ fun MainScreen() {
                             brush = Brush.verticalGradient(
                                 colors = listOf(
                                     MaterialTheme.colors.background,
-                                    MaterialTheme.colors.primary
+                                    MaterialTheme.colors.secondary
                                 )
                             )
                         )
@@ -67,8 +70,7 @@ fun MainScreen() {
                         state.buttons.forEach { mainScreenButton ->
                             Button(
                                 modifier = Modifier
-                                    .size(width = 240.dp, height = 50.dp)
-                                    .clip(RoundedCornerShape(14.dp)),
+                                    .size(width = 240.dp, height = 50.dp),
                                 onClick = {
                                     viewModel.obtainSingleEvent(
                                         MainScreenEvent.OnMainScreenButtonClicked(
@@ -94,12 +96,12 @@ fun MainScreen() {
                             modifier = Modifier
                                 .size(width = 50.dp, height = 50.dp)
                                 .padding(10.dp),
-                            tint = MaterialTheme.colors.onPrimary
+                            tint = MaterialTheme.colors.onSecondary
                         )
                         Text(
                             text = stringResource(id = if (state.isSoundMuted) R.string.scr_main_txt_sounds_off else R.string.scr_main_txt_sounds_on),
                             style = TextStyle(
-                                color = MaterialTheme.colors.onPrimary
+                                color = MaterialTheme.colors.onSecondary
                             ),
                             modifier = Modifier.align(CenterVertically).padding(end = 10.dp)
                         )
@@ -110,8 +112,25 @@ fun MainScreen() {
             MainScreenViewState.Initial -> {}
         }
 
+        when (val action = viewAction.value) {
+            MainScreenAction.OpenGameScreen -> {
+                rootController.push(GAME_SCREEN_NAV_ID)
+                viewModel.obtainEvent(MainScreenEvent.Close)
+            }
+            MainScreenAction.OpenInfoScreen -> TODO()
+            MainScreenAction.OpenOtherGamesScreen -> TODO()
+            MainScreenAction.OpenRecordsScreen -> TODO()
+            is MainScreenAction.ShowToast -> {
+
+            }
+            is MainScreenAction.ShowAlert -> {
+
+            }
+            null -> {}
+        }
+
         LaunchedEffect(key1 = Unit, block = {
-            viewModel.obtainSingleEvent(MainScreenEvent.InitScreen)
+            viewModel.obtainEvent(MainScreenEvent.InitScreen)
         })
     }
 }

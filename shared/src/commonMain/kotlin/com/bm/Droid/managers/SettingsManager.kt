@@ -1,4 +1,4 @@
-package com.bm.Droid
+package com.bm.Droid.managers
 
 import com.russhwolf.settings.Settings
 

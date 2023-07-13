@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("app.cash.sqldelight") version "2.0.0-rc02"
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -37,6 +38,24 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
             }
+        }
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.sqldelight.android)
+            }
+        }
+        val iosMain by getting {
+            dependencies {
+                implementation(libs.sqldelight.native)
+            }
+        }
+    }
+}
+
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("com.bm.Droid")
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.bm.Droid.android.navigation
 
+import com.bm.Droid.android.screens.game.GAME_SCREEN_NAV_ID
+import com.bm.Droid.android.screens.game.GameScreen
 import com.bm.Droid.android.screens.info.INFO_SCREEN_NAV_ID
 import com.bm.Droid.android.screens.info.InfoScreen
 import com.bm.Droid.android.screens.main.MAIN_SCREEN_NAV_ID
@@ -18,5 +20,8 @@ internal fun RootComposeBuilder.navigationGraph() {
     }
     screen(INFO_SCREEN_NAV_ID) {
         InfoScreen()
+    }
+    screen(GAME_SCREEN_NAV_ID) {
+        GameScreen()
     }
 }
